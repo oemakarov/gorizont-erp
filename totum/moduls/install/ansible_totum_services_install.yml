@@ -662,7 +662,7 @@
 
   - name: Show installation completion message
     debug:
-      msg: "NOW YOU CAN ADD YOUR TOTUM SERVER HOST TO /home/totum/totum-services/services_list AND ADD {{ install_url }} WITH PROTOCOL (HTTP/HTTPS) AS SERVICE URL IN THE SERVICE SETTINGS IN YOUR TOTUM. IF YOU INSTALLED SERVICES WITHOUT SSL, THEN IN THE Conf.php SETTINGS IN TOTUM YOU NEED TO DISABLE CERTIFICATE CHECKING WHEN CALLING SERVICES (CHECK https://docs.totum.online/srv_connection)."
+      msg: "NOW YOU CAN ADD YOUR GORIZONT-ERP SERVER HOST TO /home/totum/totum-services/services_list AND ADD {{ install_url }} WITH PROTOCOL (HTTP/HTTPS) AS SERVICE URL IN THE SERVICE SETTINGS IN YOUR GORIZONT-ERP. IF YOU INSTALLED SERVICES WITHOUT SSL, THEN IN THE Conf.php SETTINGS IN GORIZONT-ERP YOU NEED TO DISABLE CERTIFICATE CHECKING WHEN CALLING SERVICES (CHECK https://docs.totum.online/srv_connection)."
 
   - name: Ask to upgrade software on the server
     pause:

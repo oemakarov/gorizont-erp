@@ -85,9 +85,9 @@ echo -e "\e[40;1;37m                            -******::****:**:               
 echo -e "\e[40;1;37m                                                                         \033[0m"
 echo -e "\033[43m\033[30m- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\033[0m"
 echo -e "\033[43m\033[30m                                                                         \033[0m"
-echo -e "\033[43m\033[30m   TOTUM AUTOINSTALL SCRIPT                                              \033[0m"
+echo -e "\033[43m\033[30m   GORIZONT-ERP AUTOINSTALL SCRIPT                                              \033[0m"
 echo -e "\033[43m\033[30m                                                                         \033[0m"
-echo -e "\033[43m\033[30m   This install script will help you to install MIT/PRO Totum online.    \033[0m"
+echo -e "\033[43m\033[30m   This install script will help you to install MIT/PRO Gorizont-ERP.    \033[0m"
 echo -e "\033[43m\033[30m                                                                         \033[0m"
 echo -e "\033[43m\033[30m   \033[43m\033[31mONLY ON CLEAR!!! Ubuntu 24.04 \033[43m\033[30mwith or without SSL certificate.        \033[0m"
 echo -e "\033[43m\033[30m                                                                         \033[0m"
@@ -136,7 +136,7 @@ fi
 
 read -p "Enter your email: " CERTBOTEMAIL
 echo
-read -p "Create Totum superuser password: " TOTUMADMINPASS
+read -p "Create Gorizont-ERP superuser password: " TOTUMADMINPASS
 echo
 echo "- - - - - - - - - - - - - - - - - - - - - -"
 echo "Enter domain without http/https delegated! to this server, like totum.online"
@@ -182,7 +182,7 @@ echo -e "\033[1mVersion:\033[0m "$TOTUMVERSION
 echo
 echo -e "\033[1mEmail:\033[0m " $CERTBOTEMAIL
 echo
-echo -e "\033[1mPass for Totum admin:\033[0m " $TOTUMADMINPASS
+echo -e "\033[1mPass for Gorizont-ERP admin:\033[0m " $TOTUMADMINPASS
 echo
 echo -e "\033[1mDomain:\033[0m " $CERTBOTDOMAIN
 echo
@@ -234,7 +234,7 @@ echo -e "\033[1mVersion:\033[0m " $TOTUMVERSION
 echo
 echo -e "\033[1mEmail:\033[0m " $CERTBOTEMAIL
 echo
-echo -e "\033[1mPass for Totum admin:\033[0m " $TOTUMADMINPASS
+echo -e "\033[1mPass for Gorizont-ERP admin:\033[0m " $TOTUMADMINPASS
 echo
 echo -e "\033[1mDomain:\033[0m " $CERTBOTDOMAIN
 echo

@@ -27,7 +27,7 @@ trait MultiTrait
             return $host;
         }
 
-        throw new criticalErrorException('Totum has not any hosts');
+        throw new criticalErrorException('Gorizont-ERP has not any hosts');
     }
 
     protected function getHostForDir($host)
