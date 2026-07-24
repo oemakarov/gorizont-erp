@@ -43,7 +43,7 @@
 
   - name: Download GPG key if not exists
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/b8dc7e53946656efbce4c1dd71daeaab4ad4cab6.asc
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/b8dc7e53946656efbce4c1dd71daeaab4ad4cab6.asc
       dest: /root/b8dc7e53946656efbce4c1dd71daeaab4ad4cab6.asc
       owner: root
       group: root
@@ -329,7 +329,7 @@
 
   - name: Download totum_services_fpm.conf
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum_services_fpm.conf
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum_services_fpm.conf
       dest: /etc/php/8.3/fpm/pool.d/totum_services.conf
       owner: root
       group: root
@@ -386,7 +386,7 @@
 
   - name: Download totum.services.conf
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum.services.conf
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum.services.conf
       dest: /etc/nginx/sites-available/totum.services.conf
       owner: root
       group: root
@@ -394,7 +394,7 @@
 
   - name: Download totum.services.conf.ip
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum.services.conf.ip
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum.services.conf.ip
       dest: /etc/nginx/sites-available/totum.services.conf
       owner: root
       group: root
@@ -437,7 +437,7 @@
 
   - name: Clone Totum repository
     git:
-      repo: https://github.com/totumonline/totum-services.git
+      repo: https://github.com/oemakarov/gorizont-erp.git
       dest: /home/totum/totum-services
       version: services
       update: yes
@@ -633,7 +633,7 @@
 
   - name: Switch IP to Domain - Download totum.services.conf
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum.services.conf
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum.services.conf
       dest: /etc/nginx/sites-available/totum.services.conf
       owner: root
       group: root
@@ -662,7 +662,7 @@
 
   - name: Show installation completion message
     debug:
-      msg: "NOW YOU CAN ADD YOUR GORIZONT-ERP SERVER HOST TO /home/totum/totum-services/services_list AND ADD {{ install_url }} WITH PROTOCOL (HTTP/HTTPS) AS SERVICE URL IN THE SERVICE SETTINGS IN YOUR GORIZONT-ERP. IF YOU INSTALLED SERVICES WITHOUT SSL, THEN IN THE Conf.php SETTINGS IN GORIZONT-ERP YOU NEED TO DISABLE CERTIFICATE CHECKING WHEN CALLING SERVICES (CHECK https://docs.totum.online/srv_connection)."
+      msg: "NOW YOU CAN ADD YOUR GORIZONT-ERP SERVER HOST TO /home/totum/totum-services/services_list AND ADD {{ install_url }} WITH PROTOCOL (HTTP/HTTPS) AS SERVICE URL IN THE SERVICE SETTINGS IN YOUR GORIZONT-ERP. IF YOU INSTALLED SERVICES WITHOUT SSL, THEN IN THE Conf.php SETTINGS IN GORIZONT-ERP YOU NEED TO DISABLE CERTIFICATE CHECKING WHEN CALLING SERVICES (CHECK https://docs.gorizont-erp.ru/srv_connection)."
 
   - name: Ask to upgrade software on the server
     pause:

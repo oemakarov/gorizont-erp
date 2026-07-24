@@ -445,7 +445,7 @@ class DE implements LangInterface
   'You can resend a secret via <span></span> sec' => 'Code kann in <span></span> Sek erneut gesendet werden',
   'Secret code' => 'Geheimcode',
   'Recalculate cycle with id %s before export.' => 'Berechnen Sie den Zyklus mit der ID %s vor dem Export neu.',
-  'TOTUM-HELP-LINKS' => '[["📕 Dokumentation","https://docs.totum.online/"],["📗 Grundlagen für Benutzer","https://docs.totum.online/user-guide"],["🚀 Lizenzen der PRO-Version","https://totum.online/pro"],["🤖 Gorizont-ERP AI","https://totum.online/ai"]]',
+  'TOTUM-HELP-LINKS' => '[["📕 Dokumentation","https://docs.gorizont-erp.ru/"],["📗 Grundlagen für Benutzer","https://docs.gorizont-erp.ru/user-guide"],["🚀 Lizenzen der PRO-Version","https://gorizont-erp.ru/pro"],["🤖 Gorizont-ERP AI","https://gorizont-erp.ru/ai"]]',
   'TOTUM-math format error [[%s]].' => 'Gorizont-ERP-math Formatfehler [[%s]].',
   'Tree nesting error' => 'Baum-Verschachtelungsfehler. Ein Kindelement kann kein Elternelement sein.',
   'Field [[%s]] is not of type password' => 'Feld [[%s]] ist nicht vom Typ Passwort',

@@ -358,7 +358,7 @@ class EN implements LangInterface
   'Resend secret' => 'Resend secret code',
   'You can resend a secret via <span></span> sec' => 'You can resend the code in <span></span> sec',
   'Recalculate cycle with id %s before export.' => 'Recalculate the cycle with id %s before exporting.',
-  'TOTUM-HELP-LINKS' => '[["📕 Documentation","https://docs.totum.online/"],["📗 User Guide Basics","https://docs.totum.online/user-guide"],["🚀 PRO Version Licenses","https://totum.online/pro"],["🤖 Gorizont-ERP AI","https://totum.online/ai"]]',
+  'TOTUM-HELP-LINKS' => '[["📕 Documentation","https://docs.gorizont-erp.ru/"],["📗 User Guide Basics","https://docs.gorizont-erp.ru/user-guide"],["🚀 PRO Version Licenses","https://gorizont-erp.ru/pro"],["🤖 Gorizont-ERP AI","https://gorizont-erp.ru/ai"]]',
   'Tree nesting error' => 'Tree nesting error. A child element cannot be a parent.',
   'Wrong [[%s]] value' => 'Invalid value in [[%s]]',
 );

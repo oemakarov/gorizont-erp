@@ -447,7 +447,7 @@ class RU implements LangInterface
   'You can resend a secret via <span></span> sec' => 'Повторно отправить код можно через <span></span> сек',
   'Secret code' => 'Секретный код',
   'Recalculate cycle with id %s before export.' => 'Пересчитайте цикл с id %s перед экспортом.',
-  'TOTUM-HELP-LINKS' => '[["📕 Документация","https://ru.docs.totum.online/"],["📗 Основы для пользователей","https://ru.docs.totum.online/user-guide"],["🚀 Лицензии PRO-версии","https://ru.totum.online/pro"],["🤖 Gorizont-ERP AI","https://ru.totum.online/ai"]]',
+  'TOTUM-HELP-LINKS' => '[["📕 Документация","https://ru.docs.gorizont-erp.ru/"],["📗 Основы для пользователей","https://ru.docs.gorizont-erp.ru/user-guide"],["🚀 Лицензии PRO-версии","https://ru.gorizont-erp.ru/pro"],["🤖 Gorizont-ERP AI","https://ru.gorizont-erp.ru/ai"]]',
   'TOTUM-math format error [[%s]].' => 'GORIZONT-ERP-math ошибка формата [[%s]].',
   'Tree nesting error' => 'Ошибка вложенности дерева. Дочерний элемент не может быть родительским.',
   'Field [[%s]] is not of type password' => 'Поле [[%s]] не является паролем',

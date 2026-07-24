@@ -1,6 +1,6 @@
 # Self‑hosted database with built‑in language to create internal tools with ease
 
-This is the free version of Gorizont-ERP PRO: https://totum.online/pro
+This is the free version of Gorizont-ERP PRO: https://gorizont-erp.ru/pro
 
 Universal UI, simple code-based logic, automatic actions, access rights, logging, API and lots of other stuff 👍
 
@@ -22,29 +22,29 @@ On your server, easy to learn and scalable with business growth 🎉
 
 **— API (PRO)** —  integrate with anything (only in PRO).
 
-Site — [totum.online](https://totum.online)
+Site — [gorizont-erp.ru](https://gorizont-erp.ru)
 
 ## Install and docs
 
-1-Click native install on Ubuntu 24.04 `ONLY FOR CLEAN SYSTEMS` — [docs.totum.online/ubuntu](https://docs.totum.online/ubuntu)
+1-Click native install on Ubuntu 24.04 `ONLY FOR CLEAN SYSTEMS` — [docs.gorizont-erp.ru/ubuntu](https://docs.gorizont-erp.ru/ubuntu)
 ```
-sudo curl -O https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum_autoinstall.sh && sudo bash totum_autoinstall.sh
+sudo curl -O https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum_autoinstall.sh && sudo bash totum_autoinstall.sh
 ```
 Avaliable lang: `EN`, `RU`, `ES`, `DE`
 
 This command installs both the MIT and PRO versions. The PRO version, without additional users (only with the Admin user), works without a license.
 
-**You can also get a free PRO license for 2 additional users:** for more details, see [EN](https://docs.totum.online/free-license) / [RU](https://ru.docs.totum.online/free-license).
+**You can also get a free PRO license for 2 additional users:** for more details, see [EN](https://docs.gorizont-erp.ru/free-license) / [RU](https://ru.docs.gorizont-erp.ru/free-license).
 
-Documentaion — [docs.totum.online](https://docs.totum.online) 🔥
+Documentaion — [docs.gorizont-erp.ru](https://docs.gorizont-erp.ru) 🔥
 
-Training course — [docs.totum.online/training-course](https://docs.totum.online/training-course) 🚀
+Training course — [docs.gorizont-erp.ru/training-course](https://docs.gorizont-erp.ru/training-course) 🚀
 
-Email — `totum at totum.online`
+Email — `info@gorizont-erp.ru`
 
 ## Interface
 
-![main](https://github.com/totumonline/totum-mit/assets/55755565/a2dcf16f-a393-4efe-b3d7-c4b91dd7d97c)
+![main](https://github.com/oemakarov/gorizont-erp/assets/55755565/a2dcf16f-a393-4efe-b3d7-c4b91dd7d97c)
 
 ## Using
 
@@ -99,7 +99,7 @@ listNumbers: selectList(table: 'orders'; field: 'number'; where: 'date' >= #firs
 ```
 
 
-You can implement complex logic, even with the lowest programming skills. You will be able to understand it with — [the free training course](https://docs.totum.online/training-course), [forum](https://github.com/totumonline/totum-ru-issues-and-discussions/discussions) 👌
+You can implement complex logic, even with the lowest programming skills. You will be able to understand it with — [the free training course](https://docs.gorizont-erp.ru/training-course), [forum](https://github.com/oemakarov/gorizont-erp/discussions) 👌
 
 ## Database as interface - x10 to development speed 🏃💨
 
@@ -115,7 +115,7 @@ Use a variety of ready-made elements:
 + Files (in PRO)
 + Charts
 
-![fields](https://github.com/totumonline/totum-mit/assets/55755565/2fb48dd6-706b-4fec-aed6-464eaeea7ece)
+![fields](https://github.com/oemakarov/gorizont-erp/assets/55755565/2fb48dd6-706b-4fec-aed6-464eaeea7ece)
 
 ## And a few more details... 👀
 
@@ -163,7 +163,7 @@ In addition, the database underlying Gorizont-ERP allows it to be clustered acro
 
 ## Technical basis (double elefant)
 
-![postgres](https://totum.totum.online/fls/365_262_file.png)  ![php]( https://totum.totum.online/fls/365_261_file.png)
+![postgres](https://totum.gorizont-erp.ru/fls/365_262_file.png)  ![php]( https://totum.gorizont-erp.ru/fls/365_261_file.png)
 
 + Open source code in PHP.
 
@@ -175,10 +175,10 @@ In addition, the database underlying Gorizont-ERP allows it to be clustered acro
 
 ## How to try?
 
-Site — [totum.online](https://totum.online)
+Site — [gorizont-erp.ru](https://gorizont-erp.ru)
 
-Documentation — [docs.totum.online](https://docs.totum.online)
+Documentation — [docs.gorizont-erp.ru](https://docs.gorizont-erp.ru)
 
-Training course — [docs.totum.online/training-course](https://docs.totum.online/training-course) 🚀
+Training course — [docs.gorizont-erp.ru/training-course](https://docs.gorizont-erp.ru/training-course) 🚀
 
-Email — `totum at totum.online`
+Email — `info@gorizont-erp.ru`

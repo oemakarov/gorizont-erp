@@ -60,7 +60,7 @@
 
   - name: Download GPG key if not exists
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/b8dc7e53946656efbce4c1dd71daeaab4ad4cab6.asc
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/b8dc7e53946656efbce4c1dd71daeaab4ad4cab6.asc
       dest: /root/b8dc7e53946656efbce4c1dd71daeaab4ad4cab6.asc
       owner: root
       group: root
@@ -355,7 +355,7 @@
 
   - name: Download totum_fpm.conf
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum_pool.conf
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum_pool.conf
       dest: /etc/php/8.3/fpm/pool.d/totum.conf
       owner: root
       group: root
@@ -420,7 +420,7 @@
 
   - name: Download totum.online.conf
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum.online.conf
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum.online.conf
       dest: /etc/nginx/sites-available/totum.online.conf
       owner: root
       group: root
@@ -428,7 +428,7 @@
 
   - name: Download totum.online.conf.ip
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum.online.conf.ip
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum.online.conf.ip
       dest: /etc/nginx/sites-available/totum.online.conf
       owner: root
       group: root
@@ -499,7 +499,7 @@
 
   - name: Clone Totum repository
     git:
-      repo: https://github.com/totumonline/totum-mit.git
+      repo: https://github.com/oemakarov/gorizont-erp.git
       dest: /home/totum/totum-mit
       version: master
       update: yes
@@ -647,7 +647,7 @@
   # Switch to the PRO repository
 
   - name: Set Git remote URL to PRO repository
-    shell: git remote set-url origin https://github.com/totumonline/totum-pro.git
+    shell: git remote set-url origin https://github.com/oemakarov/gorizont-erp.git
     become_user: totum
     args:
       chdir: /home/totum/totum-mit
@@ -874,7 +874,7 @@
 
   - name: Switch IP to Domain - Download totum.online.conf
     get_url:
-      url: https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/moduls/install/totum.online.conf
+      url: https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/moduls/install/totum.online.conf
       dest: /etc/nginx/sites-available/totum.online.conf
       owner: root
       group: root

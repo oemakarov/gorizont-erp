@@ -24,12 +24,12 @@ class GitUpdate extends Command
     {
        if (!$input->getOption('force')) {
             $error = true;
-            if ($totumClass = file_get_contents('https://raw.githubusercontent.com/totumonline/totum-mit/master/totum/common/Totum.php')) {
+            if ($totumClass = file_get_contents('https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/common/Totum.php')) {
                 if (preg_match('/public\s*const\s*VERSION = \'(\d+)/', $totumClass, $matches)) {
                     $oldVersion = (string)preg_replace('/^(\d+).*$/', '$1', Totum::VERSION);
                     if ($oldVersion !== $matches[1]) {
                         die('This update will change the major version from '.$oldVersion.' to ' . $matches[1].' '.
-                            'Check server settings and backward compatibility violations at https://github.com/totumonline/totum-mit/blob/master/UPDATES.md ' .
+                            'Check server settings and backward compatibility violations at https://github.com/oemakarov/gorizont-erp/blob/master/UPDATES.md ' .
                             'Use --force if you are sure about the update.');
                     } else {
                         $error = false;
@@ -38,7 +38,7 @@ class GitUpdate extends Command
             }
             if ($error) {
                 die('Access to the files on GitHub has been restricted. The major version change check failed. ' .
-                    'Check yourself at https://github.com/totumonline/totum-mit/blob/master/totum/common/Totum.php ' .
+                    'Check yourself at https://github.com/oemakarov/gorizont-erp/blob/master/totum/common/Totum.php ' .
                     'Use --force if you are sure about the update.');
             }
         }

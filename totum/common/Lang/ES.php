@@ -445,7 +445,7 @@ class ES implements LangInterface
   'You can resend a secret via <span></span> sec' => 'Puedes reenviar el código en <span></span> seg',
   'Secret code' => 'Código secreto',
   'Recalculate cycle with id %s before export.' => 'Recalcula el ciclo con id %s antes de exportar.',
-  'TOTUM-HELP-LINKS' => '[["📕 Documentación","https://docs.totum.online/"],["📗 Conceptos básicos para usuarios","https://docs.totum.online/user-guide"],["🚀 Licencias de la versión PRO","https://es.totum.online/pro"],["🤖 Gorizont-ERP AI","https://es.totum.online/ai"]]',
+  'TOTUM-HELP-LINKS' => '[["📕 Documentación","https://docs.gorizont-erp.ru/"],["📗 Conceptos básicos para usuarios","https://docs.gorizont-erp.ru/user-guide"],["🚀 Licencias de la versión PRO","https://es.gorizont-erp.ru/pro"],["🤖 Gorizont-ERP AI","https://es.gorizont-erp.ru/ai"]]',
   'TOTUM-math format error [[%s]].' => 'Error de formato Gorizont-ERP-math [[%s]].',
   'Tree nesting error' => 'Error de anidamiento del árbol. Un elemento hijo no puede ser un elemento padre.',
   'Field [[%s]] is not of type password' => 'El campo [[%s]] no es de tipo contraseña',
