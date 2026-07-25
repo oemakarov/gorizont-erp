@@ -70,7 +70,7 @@ class TmpTables extends Model
 
     public function getByHash($table_name, User $User, $hash, $json_decode = true)
     {
-        $smtp = $this->executePreparedSimple(
+        $statement = $this->executePreparedSimple(
             true,
             'UPDATE ' . $this->table . ' set touched=? where table_name=? AND user_id=? AND hash=? RETURNING tbl',
             [
@@ -78,7 +78,7 @@ class TmpTables extends Model
             ]
         );
 
-        $data = $smtp->fetchColumn();
+        $data = $statement->fetchColumn();
 
         if(empty($data)){
             throw new errorException($this->translate('The storage time of the temporary object has expired.'));
