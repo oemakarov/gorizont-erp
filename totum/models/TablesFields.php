@@ -67,7 +67,7 @@ class TablesFields extends Model
             }
         }
 
-        $r = parent::update($params, $where);
+        $result = parent::update($params, $where);
 
         if ($oldRow && ($table = $this->Totum->getTableRow($oldRow['table_id']['v'])) && $table['type'] !== 'tmp' && $table['type'] !== 'calcs') {
             $Table = $this->Totum->getTable($table);
@@ -94,7 +94,7 @@ class TablesFields extends Model
             $Table->initFields(true);
         }
 
-        return $r;
+        return $result;
     }
 
     public function insertPrepared($vars, $returning = 'idFieldName', $ignore = false, $cacheIt = true): int
