@@ -10,6 +10,14 @@ trait WithPathMessTrait
 {
     protected $pathMess;
 
+    /**
+     * @return mixed
+     */
+    public function getPathMess()
+    {
+        return $this->pathMess;
+    }
+
     public function addPath($path)
     {
         if (empty($this->pathMess)) {
@@ -17,13 +25,5 @@ trait WithPathMessTrait
         } else {
             $this->pathMess = $this->getPathMess() . '; ' . $path;
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPathMess()
-    {
-        return $this->pathMess;
     }
 }
