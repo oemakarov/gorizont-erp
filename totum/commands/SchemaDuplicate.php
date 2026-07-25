@@ -45,13 +45,13 @@ class SchemaDuplicate extends Command
             $Conf->setHostSchema(null, $baseName);
         }
 
-        $desName = $input->getArgument('name');
-        if (empty($desName)) {
+        $destName = $input->getArgument('name');
+        if (empty($destName)) {
             throw new errorException('Enter new schema name');
         }
 
-        if (in_array($desName, array_values($Conf::getSchemas()))) {
-            throw new errorException("$desName schema exists in Conf.php");
+        if (in_array($destName, array_values($Conf::getSchemas()))) {
+            throw new errorException("$destName schema exists in Conf.php");
         }
 
         $pgDump = $Conf->getSshPostgreConnect('pg_dump');
@@ -122,7 +122,7 @@ class SchemaDuplicate extends Command
                 $buffer .= 'update "' . $baseName . '".users set on_off=jsonb_build_object(\'v\', false) where id != 1;';
             }
 
-            $buffer .= 'ALTER SCHEMA "' . $baseName . '" RENAME TO "' . $desName . '";';
+            $buffer .= 'ALTER SCHEMA "' . $baseName . '" RENAME TO "' . $destName . '";';
             $buffer .= 'ALTER SCHEMA "' . $tmpold . '" RENAME TO "' . $baseName . '";';
             fputs($handleTmp, $buffer);
 
@@ -150,7 +150,7 @@ class SchemaDuplicate extends Command
                     $output->writeln('save Conf.php');
 
                     eval("\$schemas={$matches[1]}");
-                    $schemas[$host] = $desName;
+                    $schemas[$host] = $destName;
                     $ConfFileContent = preg_replace(
                         '~(\/\*\*\*getSchemas\*\*\*\/[^$]*{[^$]*return\s*)([^$]*)(\}[^$]*/\*\*\*getSchemasEnd\*\*\*/)~',
                         '$1' . var_export($schemas, 1) . ';$3',
