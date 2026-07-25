@@ -4,13 +4,13 @@ namespace totum\common\calculates;
 
 use totum\common\criticalErrorException;
 use totum\common\errorException;
-use totum\common\Services\ServicesConnector;
 use totum\fieldTypes\File;
+use totum\common\Services\ServicesConnector;
 
 trait FuncServicesTrait
 {
 
-    protected function funcServiceXlsxParser($params)
+    protected function funcServiceAskOpenai($params)
     {
         throw new criticalErrorException($this->translate('This option works only in PRO.'));
     }
@@ -20,7 +20,12 @@ trait FuncServicesTrait
         throw new criticalErrorException($this->translate('This option works only in PRO.'));
     }
 
-    protected function funcServiceAskOpenai($params)
+    protected function funcServiceDocxGenerator($params)
+    {
+        throw new criticalErrorException($this->translate('This option works only in PRO.'));
+    }
+
+    protected function funcServicePDFGenerator($params)
     {
         throw new criticalErrorException($this->translate('This option works only in PRO.'));
     }
@@ -30,16 +35,9 @@ trait FuncServicesTrait
         throw new criticalErrorException($this->translate('This option works only in PRO.'));
     }
 
-
-    protected function funcServiceDocxGenerator($params)
+    protected function funcServiceXlsxParser($params)
     {
         throw new criticalErrorException($this->translate('This option works only in PRO.'));
-    }
-
-    protected function funcServicePDFGenerator($params)
-    {
-        throw new criticalErrorException($this->translate('This option works only in PRO.'));
-
     }
 
 }
