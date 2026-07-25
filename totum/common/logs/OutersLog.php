@@ -37,18 +37,18 @@ class OutersLog extends AbstractLogger
             ));
 
         } catch (\PDOException $exception) {
-            if ($afterError || $exception->getCode() != '42P01') {
-                throw new criticalErrorException($exception->getMessage());
-            }
-
-            $this->PDO->exec('CREATE TABLE _bfl(
+            if (!$afterError && $exception->getCode() == '42P01') {
+                $this->PDO->exec('CREATE TABLE _bfl(
   dt timestamp NOT NULL default NOW()::timestamp,
   uid bigint,
   cat text,
   type text,
   data jsonb
 )');
-            $this->add($category, $type, $data, true);
+                $this->add($category, $type, $data, true);
+            } else {
+                throw new criticalErrorException($exception->getMessage());
+            }
         }
     }
 
