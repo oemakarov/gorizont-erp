@@ -19,8 +19,8 @@ class FieldModifyItem
 
     public function __construct($sign, $val, $percent = false)
     {
-        $this->val = $val;
         $this->sign = $sign;
+        $this->val = $val;
         $this->percent = $percent;
     }
     public function __get($name)
