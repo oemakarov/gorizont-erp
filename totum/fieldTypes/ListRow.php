@@ -27,7 +27,7 @@ class ListRow extends Field
                     /*if($this->data['name']==='not_loaded'){
                         var_dump($string); die;
                     }*/
-                    if ($this->table->getTableRow()['type'] !== 'tmp' && !empty($this->data['viewTextMaxLength']) && $isBig = mb_strlen($string) > $this->data['viewTextMaxLength']) {
+                    if ($this->table->getTableRow()['type'] !== 'tmp' && !empty($this->data['viewTextMaxLength']) && $exceedsLimit = mb_strlen($string) > $this->data['viewTextMaxLength']) {
                         $valArray['v'] = mb_substr($string, 0, $this->data['viewTextMaxLength']) . '...';
                     }
                 }
