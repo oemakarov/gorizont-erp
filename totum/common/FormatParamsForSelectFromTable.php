@@ -12,11 +12,11 @@ class FormatParamsForSelectFromTable
     /**
      * @var array
      */
-    private $_order;
+    private $_field;
     /**
      * @var array
      */
-    private $_field;
+    private $_order;
 
     public function where($name, $value, $operator = '=')
     {
