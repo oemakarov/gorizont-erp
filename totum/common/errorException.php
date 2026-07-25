@@ -8,11 +8,11 @@
 
 namespace totum\common;
 
-use Composer\Config;
 use totum\common\configs\ConfParent;
 use totum\common\sql\Sql;
 use totum\common\WithPathMessTrait;
 use totum\tableTypes\aTable;
+use Composer\Config;
 
 class errorException extends \Exception
 {
