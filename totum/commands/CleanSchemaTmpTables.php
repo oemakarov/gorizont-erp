@@ -45,27 +45,27 @@ class CleanSchemaTmpTables extends Command
     {
         $sql = $Conf->getSql(true, false);
 
-        $plus24 = date_create();
-        $plus24->modify('-24 hours');
+        $dayAgo = date_create();
+        $dayAgo->modify('-24 hours');
 
         try {
-            $sql->exec('delete from "' . $schema . '"._tmp_tables where touched<\'' . $plus24->format('Y-m-d H:i') . '\'');
+            $sql->exec('delete from "' . $schema . '"._tmp_tables where touched<\'' . $dayAgo->format('Y-m-d H:i') . '\'');
 
-            $minusHour = date_create();
-            $minusHour->modify('-1 hour');
+            $hourAgo = date_create();
+            $hourAgo->modify('-1 hour');
             try {
-                $sql->exec('delete from "' . $schema . '"._services_vars where expire<\'' . $minusHour->format('Y-m-d H:i:s') . '\'');
+                $sql->exec('delete from "' . $schema . '"._services_vars where expire<\'' . $hourAgo->format('Y-m-d H:i:s') . '\'');
             } catch (\Exception $exception) {
                 /*if ($exception->getCode() === '42P01') {
 
                 }*/
             }
 
-            $minus10 = date_create();
-            $minus10->modify('-2 hours');
+            $twoHoursAgo = date_create();
+            $twoHoursAgo->modify('-2 hours');
 
             $sql->exec('delete from "' . $schema . '"._tmp_tables where table_name SIMILAR TO \'\_%\' AND touched<\''
-                . $minus10->format('Y-m-d H:i') . '\'');
+                . $twoHoursAgo->format('Y-m-d H:i') . '\'');
 
             $sql->exec('VACUUM "' . $schema . '"._tmp_tables');
         } catch (\Exception $e) {
