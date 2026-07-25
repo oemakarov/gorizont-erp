@@ -59,10 +59,10 @@ class SchemaUpdate extends Command
         if ($file === 'sys_update') {
             $path = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'moduls' . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR;
             $file = $path. 'start.json.gz.ttm';
-            $cont = $TotumInstall->getDataFromFile($file);
-            $cont = $TotumInstall->schemaTranslate($cont, $path.$Conf->getLang() . '.json', $Conf->getLang() !== 'en' ? $path.'en.json' : null);
+            $content = $TotumInstall->getDataFromFile($file);
+            $content = $TotumInstall->schemaTranslate($content, $path.$Conf->getLang() . '.json', $Conf->getLang() !== 'en' ? $path.'en.json' : null);
         }else{
-            $cont = $TotumInstall->getDataFromFile($file);
+            $content = $TotumInstall->getDataFromFile($file);
         }
 
         if (($matches = json_decode($sourceName, true)) && is_array($matches) && key_exists(
@@ -74,9 +74,9 @@ class SchemaUpdate extends Command
         } else {
             $matches = $TotumInstall->getTotum()->getTable('ttm__updates')->getTbl()['params']['h_matches']['v'][$sourceName] ?? [];
         }
-        $cont = $TotumInstall->applyMatches($cont, $matches);
+        $content = $TotumInstall->applyMatches($content, $matches);
 
-        $TotumInstall->updateSchema($cont, true, $sourceName);
+        $TotumInstall->updateSchema($content, true, $sourceName);
 
         return 0;
     }
