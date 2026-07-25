@@ -18,14 +18,14 @@ class errorException extends \Exception
 {
     use WithPathMessTrait;
 
-    public function __get($name)
-    {
-        return $this->$name;
-    }
-
     public function __construct($message, $code = 0)
     {
         parent::__construct($message, $code);
+    }
+
+    public function __get($name)
+    {
+        return $this->$name;
     }
 
     public static function tableUpdatedException(aTable $aTable)
