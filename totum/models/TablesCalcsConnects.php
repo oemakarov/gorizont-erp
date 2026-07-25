@@ -20,7 +20,7 @@ class TablesCalcsConnects extends Model
 
     public function addConnects($tableId, array $sourceTableIds, $cycle_id = 0, $cycles_table_id = 0)
     {
-        foreach ($sourceTableIds as $sourceTableId => $null) {
+        foreach ($sourceTableIds as $sourceTableId => $_) {
             $this->insertPrepared(
                 [
                 'table_id' => $tableId
