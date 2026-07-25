@@ -58,12 +58,12 @@ class Unic extends Field
                     $where[] = ['field' => 'id', 'operator' => '!=', 'value' => $row['id']];
                 }
 
-                if ($id_duble = $this->table->getByParams(
+                if ($duplicateId = $this->table->getByParams(
                     ['field' => 'id', 'where' => $where]
                 )) {
                     errorException::criticalException(
                         $this->translate('The value must be unique. Duplication in rows: [[%s - %s]]',
-                            [$id_duble, $row['id']]),
+                            [$duplicateId, $row['id']]),
                         $this->table
                     );
                 }
