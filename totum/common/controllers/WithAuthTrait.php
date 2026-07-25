@@ -12,10 +12,10 @@ trait WithAuthTrait
     {
         $this->User = Auth::webInterfaceSessionStart($this->Config);
 
-        if (!$this->User) {
-            $this->__UnauthorizedAnswer($request);
-        } else {
+        if ($this->User) {
             $this->__actionRun($action, $request);
+        } else {
+            $this->__UnauthorizedAnswer($request);
         }
     }
 
