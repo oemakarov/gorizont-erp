@@ -74,8 +74,8 @@ class SchemaBackup extends Command
             $exclude .= " --exclude-table-data='{$schema}._log'";
         }
         if ($input->getOption('no-content')) {
-            foreach (explode(',', $input->getOption('no-content')) as $tName) {
-                $exclude .= " --exclude-table-data='{$schema}.$tName'";
+            foreach (explode(',', $input->getOption('no-content')) as $tableName) {
+                $exclude .= " --exclude-table-data='{$schema}.$tableName'";
             }
         }
 
