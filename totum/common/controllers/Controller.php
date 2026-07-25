@@ -8,18 +8,18 @@ use totum\config\Conf;
 
 abstract class Controller
 {
+    protected $modulePath;
+    /**
+     * @var string
+     */
+    protected $totumPrefix;
+    protected $Config;
     /**
      * @var Totum
      */
     protected $Totum;
 
     protected $answerVars = [];
-    protected $modulePath;
-    protected $Config;
-    /**
-     * @var string
-     */
-    protected $totumPrefix;
 
     public function __construct(Conf $Config, $totumPrefix = '/')
     {
