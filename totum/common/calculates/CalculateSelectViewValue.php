@@ -40,11 +40,11 @@ class CalculateSelectViewValue extends CalculateSelect
             $val = $this->newVal['v'];
         }
 
-        $bField = $params['bfield'] ?? 'id';
+        $baseField = $params['bfield'] ?? 'id';
 
 
         $params['where'][] = [
-            'field' => $bField,
+            'field' => $baseField,
             'operator' => '=',
             'value' => $val
         ];
@@ -58,16 +58,16 @@ class CalculateSelectViewValue extends CalculateSelect
         $selectList = [];
         if ($rows && !empty($rows[0]) && is_array($rows[0]) && array_key_exists('parent', $rows[0] ?? [])) {
             foreach ($rows as $row) {
-                $r = [$row['title'] //0
+                $rowData = [$row['title'] //0
                     , empty($row['is_del']) ? 0 : 1 //1
                     , null //2
                     , $row['parent'] //3
                     // disabled //4
                 ];
                 if ($row['disabled'] ?? false) {
-                    $r[] = 1;
+                    $rowData[] = 1;
                 }
-                $selectList[$row['value']] = $r;
+                $selectList[$row['value']] = $rowData;
             }
         } else {
             foreach ($rows as $row) {
