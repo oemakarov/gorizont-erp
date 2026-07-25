@@ -9,7 +9,7 @@ use totum\common\Model;
 
 class CalcsTablesVersions extends Model
 {
-    protected $cacheDefVersions = [];
+    protected $cachedDefaultVersions = [];
 
     public function getDefaultVersion($tableName, $withDefaultOrd = false)
     {
