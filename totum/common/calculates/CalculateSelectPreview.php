@@ -8,8 +8,8 @@
 
 namespace totum\common\calculates;
 
-use totum\common\calculates\CalculateSelect;
 use totum\tableTypes\aTable;
+use totum\common\calculates\CalculateSelect;
 
 class CalculateSelectPreview extends CalculateSelect
 {
@@ -34,21 +34,6 @@ class CalculateSelectPreview extends CalculateSelect
         return $rows;
     }
 
-    protected function funcSelectRowListForTree($params)
-    {
-        $params = $this->getParamsArray($params, ['where', 'order']);
-        $params2 = $params;
-
-        $baseField = $params['bfield'] ?? 'id';
-
-        $params2['where'][] = ['field' => $baseField, 'operator' => '=', 'value' => $this->newVal['v']];
-
-        /** @var aTable $Table */
-        list($rows, $Table) = $this->select($params2, 'row&table');
-
-        return $rows;
-    }
-
     protected function funcSelectRowListForSelect($params)
     {
         $params = $this->getParamsArray($params, ['where', 'order', 'preview']);
@@ -67,6 +52,21 @@ class CalculateSelectPreview extends CalculateSelect
         }
         $rows['previewscode'] = $params['previewscode'] ?? null;
 
+
+        return $rows;
+    }
+
+    protected function funcSelectRowListForTree($params)
+    {
+        $params = $this->getParamsArray($params, ['where', 'order']);
+        $params2 = $params;
+
+        $baseField = $params['bfield'] ?? 'id';
+
+        $params2['where'][] = ['field' => $baseField, 'operator' => '=', 'value' => $this->newVal['v']];
+
+        /** @var aTable $Table */
+        list($rows, $Table) = $this->select($params2, 'row&table');
 
         return $rows;
     }
