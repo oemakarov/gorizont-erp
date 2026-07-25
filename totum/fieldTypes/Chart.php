@@ -38,8 +38,8 @@ class Chart extends NoValueField
         parent::addFormat($valArray, $row, $tbl, $pageIds, $vars);
         if ($this->chartFormat) {
             $Log = $this->table->calcLog(['field' => $this->data['name'], 'cType' => 'format', 'itemId' => $row['id'] ?? null]);
-            if ($format = $this->chartFormat->exec($this->data, [], $row, $row, $tbl, $tbl, $this->table, ['rows'=>$this->table->getRowsForFormat($pageIds)])) {
-                $valArray['ch'] = $format;
+            if ($chartData = $this->chartFormat->exec($this->data, [], $row, $row, $tbl, $tbl, $this->table, ['rows'=>$this->table->getRowsForFormat($pageIds)])) {
+                $valArray['ch'] = $chartData;
             }
             $this->table->calcLog($Log, 'result', $valArray['ch']);
         }
