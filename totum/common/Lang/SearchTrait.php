@@ -7,13 +7,13 @@ trait SearchTrait
     public function getSearchFunction($q): callable
     {
 
-        $qs = new \stdClass();
+        $parsedQuery = new \stdClass();
         if (preg_match('/^([!\^~= ]+):\s*/', $q, $controlMatches)) {
             $q = substr($q, strlen($controlMatches[0]));
         }
         $q = $this->searchPrepare($q);
-        $qs->searchVar = $q;
-        $qs->searchArray = explode(' ', $q);
+        $parsedQuery->searchVar = $q;
+        $parsedQuery->searchArray = explode(' ', $q);
 
         if ($q === '') {
             return function ($v) {
@@ -23,8 +23,8 @@ trait SearchTrait
 
 
         $every = function ($array, $callback) {
-            foreach ($array as $a) {
-                if (!$callback($a)) {
+            foreach ($array as $item) {
+                if (!$callback($item)) {
                     return false;
                 }
             }
@@ -32,32 +32,32 @@ trait SearchTrait
         };
 
         return match ($controlMatches[1] ?? '') {
-            '!=' => function ($v) use ($qs) {
+            '!=' => function ($v) use ($parsedQuery) {
                 $v = $this->searchPrepare($v);
-                return $qs->searchVar !== $v;
+                return $parsedQuery->searchVar !== $v;
             },
-            '=' => function ($v) use ($qs) {
+            '=' => function ($v) use ($parsedQuery) {
                 $v = $this->searchPrepare($v);
-                return $qs->searchVar === $v;
+                return $parsedQuery->searchVar === $v;
             },
-            '~' => function ($v) use ($qs) {
+            '~' => function ($v) use ($parsedQuery) {
                 $v = $this->searchPrepare($v);
-                return mb_strpos($v, $qs->searchVar) !== false;
+                return mb_strpos($v, $parsedQuery->searchVar) !== false;
             },
-            '!~' => function ($v) use ($qs) {
+            '!~' => function ($v) use ($parsedQuery) {
                 $v = $this->searchPrepare($v);
-                return mb_strpos($v, $qs->searchVar) === false;
+                return mb_strpos($v, $parsedQuery->searchVar) === false;
             },
-            '!', '!~~' => function ($v) use ($every, $qs) {
+            '!', '!~~' => function ($v) use ($every, $parsedQuery) {
                 $v = $this->searchPrepare($v);
-                return $every($qs->searchArray, function ($q) use ($v) {
+                return $every($parsedQuery->searchArray, function ($q) use ($v) {
                     return mb_strpos($v, $q) === false;
                 });
             },
-            '^' => function ($v) use ($every, $qs) {
+            '^' => function ($v) use ($every, $parsedQuery) {
                 $v = $this->searchPrepare($v);
                 $v = explode(' ', $v);
-                return $every($qs->searchArray, function ($q) use ($v) {
+                return $every($parsedQuery->searchArray, function ($q) use ($v) {
                     foreach ($v as $_v) {
                         if (mb_strpos($_v, $q) === 0) {
                             return true;
@@ -66,10 +66,10 @@ trait SearchTrait
                     return false;
                 });
             },
-            '!^' => function ($v) use ($every, $qs) {
+            '!^' => function ($v) use ($every, $parsedQuery) {
                 $v = $this->searchPrepare($v);
                 $v = explode(' ', $v);
-                return $every($qs->searchArray, function ($q) use ($v) {
+                return $every($parsedQuery->searchArray, function ($q) use ($v) {
                     foreach ($v as $_v) {
                         if (mb_strpos($_v, $q) === 0) {
                             return false;
@@ -78,18 +78,18 @@ trait SearchTrait
                     return true;
                 });
             },
-            '^~' => function ($v) use ($qs) {
+            '^~' => function ($v) use ($parsedQuery) {
                 $v = $this->searchPrepare($v);
-                return mb_strpos($v, $qs->searchVar) === 0;
+                return mb_strpos($v, $parsedQuery->searchVar) === 0;
             },
-            '!^~' => function ($v) use ($qs) {
+            '!^~' => function ($v) use ($parsedQuery) {
                 $v = $this->searchPrepare($v);
-                return mb_strpos($v, $qs->searchVar) !== 0;
+                return mb_strpos($v, $parsedQuery->searchVar) !== 0;
             },
 
-            default => function ($v) use ($qs) {
+            default => function ($v) use ($parsedQuery) {
                 $v = $this->searchPrepare($v);
-                foreach ($qs->searchArray as $q) {
+                foreach ($parsedQuery->searchArray as $q) {
                     if ($q !== '' && mb_stripos($v, $q) === false) {
                         return false;
                     }
@@ -101,8 +101,7 @@ trait SearchTrait
     }
 
 
-    public
-    function searchPrepare($string): string
+    public function searchPrepare($string): string
     {
         $search = ['ё', 'á', 'é', 'í', 'ó', 'ú', 'ü'];
         $replace = ['е', 'a', 'e', 'i', 'o', 'u', 'u'];
