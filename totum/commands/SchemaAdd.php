@@ -43,13 +43,13 @@ class SchemaAdd extends Command
 
         $TotumInstall=new TotumInstall($Conf, new User(['login' => 'service', 'roles' => ["1"], 'id' => 1], $Conf), $output);
 
-        $confs=[];
-        $confs['schema_exists'] = false;
-        $confs['user_login'] = $input->getArgument('user_login');
-        $confs['user_pass'] = $input->getArgument('user_pass');
+        $schemaConfig = [];
+        $schemaConfig['schema_exists'] = false;
+        $schemaConfig['user_login'] = $input->getArgument('user_login');
+        $schemaConfig['user_pass'] = $input->getArgument('user_pass');
 
 
-        $TotumInstall->createSchema($confs, function ($file) {
+        $TotumInstall->createSchema($schemaConfig, function ($file) {
             return dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'moduls' . DIRECTORY_SEPARATOR . 'install' . DIRECTORY_SEPARATOR . $file;
         });
 
@@ -57,17 +57,17 @@ class SchemaAdd extends Command
 
         $output->writeln('save Conf.php');
 
-        $ConfFile= (new \ReflectionClass(Conf::class))->getFileName();
-        $ConfFileContent=file_get_contents($ConfFile);
+        $configFile = (new \ReflectionClass(Conf::class))->getFileName();
+        $configFileContent = file_get_contents($configFile);
 
-        if (!preg_match('~\/\*\*\*getSchemas\*\*\*\/[^$]*{[^$]*return([^$]*)\}[^$]*/\*\*\*getSchemasEnd\*\*\*/~', $ConfFileContent, $matches)) {
+        if (!preg_match('~\/\*\*\*getSchemas\*\*\*\/[^$]*{[^$]*return([^$]*)\}[^$]*/\*\*\*getSchemasEnd\*\*\*/~', $configFileContent, $matches)) {
             throw new \Exception('Format of file not correct. Can\'t replace function getSchemas');
         }
         eval("\$schemas={$matches[1]}");
         $schemas[$input->getArgument('host')]=$input->getArgument('name');
-        $ConfFileContent= preg_replace('~(\/\*\*\*getSchemas\*\*\*\/[^$]*{[^$]*return\s*)([^$]*)(\}[^$]*/\*\*\*getSchemasEnd\*\*\*/)~', '$1'.var_export($schemas, 1).';$3', $ConfFileContent);
-        copy($ConfFile, $ConfFile.'_old');
-        file_put_contents($ConfFile, $ConfFileContent);
+        $configFileContent = preg_replace('~(\/\*\*\*getSchemas\*\*\*\/[^$]*{[^$]*return\s*)([^$]*)(\}[^$]*/\*\*\*getSchemasEnd\*\*\*/)~', '$1'.var_export($schemas, 1).';$3', $configFileContent);
+        copy($configFile, $configFile.'_old');
+        file_put_contents($configFile, $configFileContent);
 
         return 0;
     }
