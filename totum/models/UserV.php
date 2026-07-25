@@ -16,9 +16,9 @@ class UserV extends Model
     protected bool $isServiceTable = true;
     protected $users;
 
-    public function getFio($id, $oneUser = false)
+    public function getFio($id, $singleUser = false)
     {
-        if ($oneUser) {
+        if ($singleUser) {
             return $this->getField('fio', ['id' => $id]);
         }
 
