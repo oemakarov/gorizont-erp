@@ -62,7 +62,7 @@ class FieldParams extends Field
     {
         $this->inVars = [];
 
-        $r = parent::modify(
+        $result = parent::modify(
             $channel,
             $changeFlag,
             $newVal,
@@ -72,14 +72,14 @@ class FieldParams extends Field
             $tbl,
             $isCheck
         );
-        return $r;
+        return $result;
     }
 
     public function add($channel, $inNewVal, $row = [], $oldTbl = [], $tbl = [], $isCheck = false, $vars = [])
     {
         $this->inVars = $vars;
 
-        $r = parent::add(
+        $result = parent::add(
             $channel,
             $inNewVal,
             $row,
@@ -88,7 +88,7 @@ class FieldParams extends Field
             $isCheck,
             $vars
         );
-        return $r;
+        return $result;
     }
 
     final protected function checkValByType(&$val, $row, $isCheck = false)
