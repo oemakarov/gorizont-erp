@@ -13,20 +13,20 @@ class CalcsTablesVersions extends Model
 
     public function getDefaultVersion($tableName, $withDefaultOrd = false)
     {
-        if (!key_exists($tableName, $this->cacheDefVersions)) {
-            $this->cacheDefVersions[$tableName] = $this->executePrepared(
+        if (!key_exists($tableName, $this->cachedDefaultVersions)) {
+            $this->cachedDefaultVersions[$tableName] = $this->executePrepared(
                 true,
                 ['table_name' => $tableName, 'is_default' => "true"],
                 'version, default_ord, default_auto_recalc'
             )->fetch();
 
-            if (!$this->cacheDefVersions[$tableName]) {
+            if (!$this->cachedDefaultVersions[$tableName]) {
                 throw new errorException($this->translate('There is no default version for table %s.'), $tableName);
             }
         }
         if ($withDefaultOrd) {
-            return $this->cacheDefVersions[$tableName];
+            return $this->cachedDefaultVersions[$tableName];
         }
-        return $this->cacheDefVersions[$tableName]['version'];
+        return $this->cachedDefaultVersions[$tableName]['version'];
     }
 }
