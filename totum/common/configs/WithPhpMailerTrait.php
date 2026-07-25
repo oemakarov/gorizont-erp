@@ -45,24 +45,24 @@ trait WithPhpMailerTrait
             $from = $from ?? $this->getDefaultSender();
             //Recipients
             $mail->setFrom($from, $from);
-            foreach ((array)$to as $_to) {
-                $mail->addAddress($_to);     // Add a recipient
+            foreach ((array)$to as $recipient) {
+                $mail->addAddress($recipient);     // Add a recipient
             }
 
             if ($replyTo) {
                 $mail->addReplyTo($replyTo);
             }
             if ($hcopy) {
-                foreach ((array) $hcopy as $_h){
-                    $mail->addBCC($_h);
+                foreach ((array) $hcopy as $bccRecipient){
+                    $mail->addBCC($bccRecipient);
                 }
             }
 
-            foreach ($attachments as $innrName => $fileString) {
-                if (preg_match('/jpg|gif|png$/', $innrName)) {
-                    $mail->addStringEmbeddedImage($fileString, $innrName, $innrName);
+            foreach ($attachments as $attachmentName => $fileString) {
+                if (preg_match('/jpg|gif|png$/', $attachmentName)) {
+                    $mail->addStringEmbeddedImage($fileString, $attachmentName, $attachmentName);
                 } else {
-                    $mail->addStringAttachment($fileString, $innrName);
+                    $mail->addStringAttachment($fileString, $attachmentName);
                 }
             }
             //Content
