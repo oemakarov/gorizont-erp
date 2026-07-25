@@ -3,11 +3,27 @@
 
 namespace totum\common\configs;
 
-use totum\common\criticalErrorException;
 use totum\common\errorException;
+use totum\common\criticalErrorException;
 
 trait MultiTrait
 {
+    protected function getHostForDir($host)
+    {
+        return preg_replace(
+            '`^(www.)?(.+)$`',
+            '$2',
+            $host
+        );
+    }
+
+    public function getClearConf()
+    {
+        $Conf= new static($this->env, false);
+        $Conf->setHostSchema($this->hostName, $this->schemaName);
+        return $Conf;
+    }
+
     public function getFilesDir()
     {
         $dir = $this->baseDir . 'http/fls/' . ($this->getHostForDir($this->getFullHostName())) . '/';
@@ -15,6 +31,19 @@ trait MultiTrait
             mkdir($dir, 0755, true);
         }
         return $dir;
+    }
+
+    public function getMainHostName()
+    {
+        $host = $this->hostName;
+        if ($this->getHiddenHosts()[$this->hostName] ?? false) {
+            foreach (static::getSchemas() as $host => $schema) {
+                if ($schema === $this->schemaName) {
+                    return $host;
+                }
+            }
+        }
+        return $host;
     }
 
     public function getSomeHost()
@@ -30,14 +59,6 @@ trait MultiTrait
         throw new criticalErrorException('Gorizont-ERP has not any hosts');
     }
 
-    protected function getHostForDir($host)
-    {
-        return preg_replace(
-            '`^(www.)?(.+)$`',
-            '$2',
-            $host
-        );
-    }
     public function setHostSchema($hostName = null, $schemaName = null)
     {
         if ($hostName) {
@@ -47,24 +68,5 @@ trait MultiTrait
             $this->schemaName = $schemaName;
             $this->hostName = $hostName ?? array_flip($this->getSchemas())[$schemaName] ?? die($this->getLangObj()->translate('Scheme not found.'));
         }
-    }
-    public function getClearConf()
-    {
-        $Conf= new static($this->env, false);
-        $Conf->setHostSchema($this->hostName, $this->schemaName);
-        return $Conf;
-    }
-
-    public function getMainHostName()
-    {
-        $host = $this->hostName;
-        if ($this->getHiddenHosts()[$this->hostName] ?? false) {
-            foreach (static::getSchemas() as $host => $schema) {
-                if ($schema === $this->schemaName) {
-                    return $host;
-                }
-            }
-        }
-        return $host;
     }
 }
