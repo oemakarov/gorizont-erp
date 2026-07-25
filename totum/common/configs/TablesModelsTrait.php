@@ -130,10 +130,10 @@ trait TablesModelsTrait
 
     protected function getModelClassName($table)
     {
-        if (empty(static::$modelsConnector[$table])) {
-            $className = Model::class;
-        } else {
+        if (!empty(static::$modelsConnector[$table])) {
             $className = static::$modelsConnector[$table];
+        } else {
+            $className = Model::class;
         }
         return $className;
     }
