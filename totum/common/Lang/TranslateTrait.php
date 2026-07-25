@@ -44,11 +44,11 @@ trait TranslateTrait
             throw new \Exception('Lang template replaces error');
         }
 
-        foreach ($from as $i => $_from) {
-            if (!key_exists($i, $to)) {
+        foreach ($from as $index => $source) {
+            if (!key_exists($index, $to)) {
                 throw new \Exception('Lang template replaces error');
             }
-            $this->templateReplaces[$_from] = $to[$i];
+            $this->templateReplaces[$source] = $to[$index];
         }
     }
 }
