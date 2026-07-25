@@ -48,13 +48,13 @@ class CalculateSelectValue extends CalculateSelect
         $selectList = [];
         unset($rows['previewdata']);
 
-        if ($this->returnHiddenData) {
+        if (!$this->returnHiddenData) {
             foreach ($rows as $row) {
                 if (!is_array($row) || !key_exists('value', $row) || !key_exists('title',
                         $row) || is_array($row['value']) || is_bool($row['value'])) {
                     throw new errorException($this->translate('Select format error in field %s', $this->varName));
                 }
-                $selectList[$row['value']] = $row['is_del'] ?? false;
+                $selectList[$row['value']] = $row['title'];
             }
         } else {
             foreach ($rows as $row) {
@@ -62,7 +62,7 @@ class CalculateSelectValue extends CalculateSelect
                         $row) || is_array($row['value']) || is_bool($row['value'])) {
                     throw new errorException($this->translate('Select format error in field %s', $this->varName));
                 }
-                $selectList[$row['value']] = $row['title'];
+                $selectList[$row['value']] = $row['is_del'] ?? false;
             }
         }
         return $selectList;
