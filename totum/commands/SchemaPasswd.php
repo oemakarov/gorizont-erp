@@ -43,14 +43,14 @@ class SchemaPasswd extends Command
         if (empty($login = $input->getArgument('login'))) {
             throw new errorException('Enter user login');
         }
-        if (empty($pass = $input->getArgument('password'))) {
+        if (empty($password = $input->getArgument('password'))) {
             throw new errorException('Enter new password');
         }
 
         $Totum = new Totum($Conf, Auth::loadAuthUserByLogin($Conf, 'service', false));
         if ($user = $Totum->getModel('users')->get(['login' => $login])) {
             $Totum->transactionStart();
-            $Totum->getTable('users')->reCalculateFromOvers(['modify' => [$user['id'] => ['pass' => $pass]]]);
+            $Totum->getTable('users')->reCalculateFromOvers(['modify' => [$user['id'] => ['pass' => $password]]]);
             $Totum->transactionCommit();
         } else {
             throw new errorException('User with login ' . $login . ' not found');
