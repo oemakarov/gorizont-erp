@@ -38,12 +38,12 @@ class SetHiddenHost extends Command
             throw new errorException('Is is not-multiple installation');
         }
 
-        $ConfFile = (new \ReflectionClass(Conf::class))->getFileName();
-        $ConfFileContent = file_get_contents($ConfFile);
+        $configFile = (new \ReflectionClass(Conf::class))->getFileName();
+        $configFileContent = file_get_contents($configFile);
 
         if (!preg_match(
             '~\/\*\*\*getSchemas\*\*\*\/[^$]*{[^$]*return([^$]*)\}[^$]*/\*\*\*getSchemasEnd\*\*\*/~',
-            $ConfFileContent,
+            $configFileContent,
             $matches
         )) {
             throw new errorException('Is is old installation file. Is is not possible to modify it this way');
@@ -59,10 +59,10 @@ class SetHiddenHost extends Command
             }
             $schemas[$newHost] = $schema;
 
-            $ConfFileContent = preg_replace(
+            $configFileContent = preg_replace(
                 '~(\/\*\*\*getSchemas\*\*\*\/[^$]*{[^$]*return\s*)([^$]*)(\}[^$]*/\*\*\*getSchemasEnd\*\*\*/)~',
                 '$1' . var_export($schemas, 1) . ';$3',
-                $ConfFileContent
+                $configFileContent
             );
 
         }
@@ -82,12 +82,12 @@ class SetHiddenHost extends Command
 
         if (!preg_match(
             '~\/\*\*\*getHiddenHosts\*\*\*\/[^$]*{[^$]*return([^$]*)\}[^$]*/\*\*\*getHiddenHostsEnd\*\*\*/~',
-            $ConfFileContent,
+            $configFileContent,
             $matches
         )) {
             $hiddenHostsPhp=var_export($hiddenHosts, 1);
 
-            $ConfFileContent = str_replace(
+            $configFileContent = str_replace(
                 '/***getSchemas***/',
 <<<TXT
 
@@ -100,21 +100,21 @@ class SetHiddenHost extends Command
     /***getSchemas***/
 TXT,
 
-                $ConfFileContent
+                $configFileContent
             );
 
         }else{
-            $ConfFileContent = preg_replace(
+            $configFileContent = preg_replace(
                 '~(\/\*\*\*getHiddenHosts\*\*\*\/[^$]*{[^$]*return\s*)([^$]*)(\}[^$]*/\*\*\*getHiddenHostsEnd\*\*\*/)~',
                 '$1' . var_export($hiddenHosts, 1) . ';$3',
-                $ConfFileContent
+                $configFileContent
             );
         }
 
 
-        copy($ConfFile, $ConfFile . '_old');
+        copy($configFile, $configFile . '_old');
 
-        file_put_contents($ConfFile, $ConfFileContent);
+        file_put_contents($configFile, $configFileContent);
 
         return 0;
     }
