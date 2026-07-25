@@ -29,12 +29,12 @@ class fieldParamsResult extends Field
     public static function getDataFromDataSrc($data_src, $table_name)
     {
         $val = [];
-        foreach ($data_src ?? [] as $fName => $Vals) {
-            if ($Vals['isOn']) {
-                if (in_array($fName, static::CODE_PARAMS)) {
-                    $val[$fName] = Calculate::parseTotumCode($Vals['Val'], $table_name);
+        foreach ($data_src ?? [] as $fieldName => $values) {
+            if ($values['isOn']) {
+                if (in_array($fieldName, static::CODE_PARAMS)) {
+                    $val[$fieldName] = Calculate::parseTotumCode($values['Val'], $table_name);
                 } else {
-                    $val[$fName] = $Vals['Val'];
+                    $val[$fieldName] = $values['Val'];
                 }
             }
         }
