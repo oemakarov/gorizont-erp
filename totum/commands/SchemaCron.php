@@ -52,8 +52,8 @@ class SchemaCron extends Command
 
 
         $User = Auth::loadAuthUserByLogin($Conf, 'cron', false);
-        $i = 0;
-        while (++$i <= 4) {
+        $attempt = 0;
+        while (++$attempt <= 4) {
             try {
                 try {
                     $Totum = new Totum($Conf, $User);
