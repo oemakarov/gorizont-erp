@@ -57,14 +57,14 @@ class Text extends Field
                 if (is_array($valArray['v'])) {
                     $valArray['v'] = null;
                     $valArray['e'] = $this->translate('Field data type error');
-                } elseif ($this->table->getTableRow()['type'] !== 'tmp' && ($isBig = mb_strlen($valArray['v']) > $this->data['viewTextMaxLength'])) {
+                } elseif ($this->table->getTableRow()['type'] !== 'tmp' && ($exceedsLimit = mb_strlen($valArray['v']) > $this->data['viewTextMaxLength'])) {
                     $valArray['v'] = mb_substr($valArray['v'], 0, $this->data['viewTextMaxLength']) . '...';
                 }
 
                 break;
             case 'print':
 
-                if (($isBig = mb_strlen($valArray['v']) > $this->data['viewTextMaxLength']) && !($this->data['printTextfull'] ?? false)) {
+                if (($exceedsLimit = mb_strlen($valArray['v']) > $this->data['viewTextMaxLength']) && !($this->data['printTextfull'] ?? false)) {
                     $valArray['v'] = mb_substr($valArray['v'], 0, $this->data['viewTextMaxLength']) . '...';
                 }
                 $valArray['v'] = htmlspecialchars($valArray['v']);
