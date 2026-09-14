@@ -218,11 +218,11 @@ class TablesFields extends Model
         }
     }
 
-    private function fieldExits($table_id, $name, $version)
+    private function fieldExits($tableId, $name, $version)
     {
         return !!$this->executePrepared(
             true,
-            ['table_id' => $table_id, 'name' => $name, 'version' => $version],
+            ['table_id' => $tableId, 'name' => $name, 'version' => $version],
             'id',
             null,
             '0,1'
