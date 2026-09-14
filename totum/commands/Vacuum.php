@@ -32,7 +32,7 @@ class Vacuum extends Command
         }
         $Conf = new Conf();
 
-        if ($table=$input->getOption('table')) {
+        if ($table = $input->getOption('table')) {
             if (is_callable([$Conf, 'setHostSchema'])) {
                 if ($schema = $input->getOption('schema')) {
                     $Conf->setHostSchema(null, $schema);
@@ -42,11 +42,11 @@ class Vacuum extends Command
             }
             $sql = $Conf->getSql(true, true);
 
-            $sql->exec('VACUUM '.($input->getOption('analyze')?' ANALYZE ':'').$table);
+            $sql->exec('VACUUM ' . ($input->getOption('analyze') ? ' ANALYZE ' : '') . $table);
 
         } else {
             $sql = $Conf->getSql(true, false);
-            $sql->exec('VACUUM '.$table);
+            $sql->exec('VACUUM ' . $table);
         }
 
         return 0;
