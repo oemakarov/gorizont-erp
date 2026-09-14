@@ -363,7 +363,7 @@ class File extends Field
 
             $vals = [];
             foreach ($val as $file) {
-                $fl = [];
+                $fileRecord = [];
                 if (!is_array($file) || !array_key_exists('name', $file)) {
                     throw new criticalErrorException($this->translate('The data format is not correct for the File field.'));
                 }
@@ -408,19 +408,19 @@ class File extends Field
                         unset(static::$transactionCommits[$fname]);
                     });
 
-                    $fl['size'] = filesize($ftmpname);
-                    $fl['ext'] = $file['ext'];
-                    $fl['file'] = preg_replace('/^.*\/([^\/]+)$/', '$1', $fname);
+                    $fileRecord['size'] = filesize($ftmpname);
+                    $fileRecord['ext'] = $file['ext'];
+                    $fileRecord['file'] = preg_replace('/^.*\/([^\/]+)$/', '$1', $fname);
                 } elseif (!empty($file['file'])) {
                     $filepath = static::getFilePath($file['file'], $this->table->getTotum()->getConfig());
-                    $fl['file'] = $file['file'];
+                    $fileRecord['file'] = $file['file'];
 
                     if (key_exists($filepath, static::$transactionCommits)) ; elseif (!is_file($filepath)) {
                         if ($isCheck) {
                             throw new errorException($this->translate('Field [[%s]] is not found.', $file['name']));
                         }
                         $file['size'] = 0;
-                        $fl['e'] = 'Файл не найден';
+                        $fileRecord['e'] = 'Файл не найден';
                     } else {
                         if (!str_starts_with($file['file'], $fPrefix) && !empty($this->data['fileDuplicateOnCopy'])) {
                             $fname = $funcGetFname($file['ext']);
@@ -441,19 +441,19 @@ class File extends Field
                                 }
                                 unset(static::$transactionCommits[$fname]);
                             });
-                            $fl['file'] = preg_replace('/^.*\/([^\/]+)$/', '$1', $fname);
+                            $fileRecord['file'] = preg_replace('/^.*\/([^\/]+)$/', '$1', $fname);
                         }
                         if (!$file['size']) {
                             $file['size'] = filesize($filepath);
                         }
                     }
 
-                    $fl['size'] = $file['size'];
-                    $fl['ext'] = $file['ext'];
+                    $fileRecord['size'] = $file['size'];
+                    $fileRecord['ext'] = $file['ext'];
                 }
 
-                $fl['name'] = $file['name'];
-                $vals[] = $fl;
+                $fileRecord['name'] = $file['name'];
+                $vals[] = $fileRecord;
             }
             $val = $vals;
         }
