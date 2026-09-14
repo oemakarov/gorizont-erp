@@ -321,14 +321,14 @@ class File extends Field
             $fPrefix = $this->_getFprefix($row['id'] ?? null);
 
             $funcGetFname = function ($ext) use ($fPrefix) {
-                $fnum = 0;
+                $fileNumber = 0;
 
                 do {
                     $unlinked = false;
 
                     $fname = static::getFilePath(
                         $fPrefix
-                        . ($fnum ? '_' . $fnum : '') //Номер
+                        . ($fileNumber ? '_' . $fileNumber : '') //Номер
                         . (!empty($this->data['nameWithHash']) ? '_' . md5(microtime(1) . $this->data['name']) : '') //хэш
                         . '.' . $ext,
                         $this->table->getTotum()->getConfig()
@@ -338,7 +338,7 @@ class File extends Field
                         break;
                     }
 
-                    ++$fnum;
+                    ++$fileNumber;
 
                     if (is_file($fname) &&
                         (
@@ -348,14 +348,14 @@ class File extends Field
 
                     ) {
                         if (unlink($fname)) {
-                            $fnum--;
+                            $fileNumber--;
                         }
                         $unlinked = true;
                     }
-                } while ($unlinked || (!@fopen($fname, 'x') && $fnum < 1030));
+                } while ($unlinked || (!@fopen($fname, 'x') && $fileNumber < 1030));
 
 
-                if ($fnum === 1030) {
+                if ($fileNumber === 1030) {
                     die($this->translate('File name search error.'));
                 }
                 return $fname;
