@@ -425,17 +425,17 @@ class File extends Field
                         if (!str_starts_with($file['file'], $fPrefix) && !empty($this->data['fileDuplicateOnCopy'])) {
                             $fname = $funcGetFname($file['ext']);
 
-                            $otherfname = static::getFilePath($file['file'], $this->table->getTotum()->getConfig());
+                            $otherFileName = static::getFilePath($file['file'], $this->table->getTotum()->getConfig());
 
-                            static::$transactionCommits[$fname] = $otherfname;
+                            static::$transactionCommits[$fname] = $otherFileName;
 
-                            $this->table->getTotum()->getConfig()->getSql()->addOnCommit(function () use ($otherfname, $fname) {
-                                if (!copy($otherfname, $fname)) {
+                            $this->table->getTotum()->getConfig()->getSql()->addOnCommit(function () use ($otherFileName, $fname) {
+                                if (!copy($otherFileName, $fname)) {
                                     die(json_encode(['error' => $this->translate('Error copying a file to the storage folder.')],
                                         JSON_UNESCAPED_UNICODE));
                                 }
-                                if (is_file($otherfname . '_thumb.jpg')) {
-                                    copy($otherfname . '_thumb.jpg', $fname . '_thumb.jpg');
+                                if (is_file($otherFileName . '_thumb.jpg')) {
+                                    copy($otherFileName . '_thumb.jpg', $fname . '_thumb.jpg');
                                 } elseif (is_file($fname . File::DOC_PREVIEW_POSTFIX)) {
                                     unlink($fname . File::DOC_PREVIEW_POSTFIX);
                                 }
