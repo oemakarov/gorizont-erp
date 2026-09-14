@@ -284,22 +284,22 @@ class File extends Field
 
 
         $createTmpFile = function ($fileString, &$file) {
-            $ftmpname = tempnam(
+            $tempFileName = tempnam(
                 $this->table->getTotum()->getConfig()->getTmpDir(),
                 $this->table->getTotum()->getConfig()->getSchema() . '.' . $this->table->getUser()->getId() . '.'
             );
-            file_put_contents($ftmpname, $fileString);
+            file_put_contents($tempFileName, $fileString);
 
             if (!empty($file['gz'])) {
-                `gzip $ftmpname`;
-                $ftmpname .= '.gz';
+                `gzip $tempFileName`;
+                $tempFileName .= '.gz';
                 unset($file['gz']);
                 $file['name'] .= '.gz';
             }
-            $file['size'] = filesize($ftmpname);
-            $file['tmpfile'] = preg_replace('`^.*/([^/]+)$`', '$1', $ftmpname);
+            $file['size'] = filesize($tempFileName);
+            $file['tmpfile'] = preg_replace('`^.*/([^/]+)$`', '$1', $tempFileName);
 
-            static::checkAndCreateThumb($ftmpname, $file['name'], $this->table->getTotum()->getConfig());
+            static::checkAndCreateThumb($tempFileName, $file['name'], $this->table->getTotum()->getConfig());
         };
 
         /*Добавление через filestring и filestringbase64 */
@@ -386,19 +386,19 @@ class File extends Field
 
 
                 if (!empty($file['tmpfile'])) {
-                    if (!is_file($ftmpname = $this->table->getTotum()->getConfig()->getTmpDir() . $file['tmpfile'])) {
+                    if (!is_file($tempFileName = $this->table->getTotum()->getConfig()->getTmpDir() . $file['tmpfile'])) {
                         die('{"error":"Временный файл не найден"}');
                     }
                     $fname = $funcGetFname($file['ext']);
 
-                    static::$transactionCommits[$fname] = $ftmpname;
+                    static::$transactionCommits[$fname] = $tempFileName;
 
-                    $this->table->getTotum()->getConfig()->getSql()->addOnCommit(function () use ($ftmpname, $fname) {
-                        if (!copy($ftmpname, $fname)) {
+                    $this->table->getTotum()->getConfig()->getSql()->addOnCommit(function () use ($tempFileName, $fname) {
+                        if (!copy($tempFileName, $fname)) {
                             die(json_encode(['error' => $this->translate('Failed to copy a temporary file.')]));
                         }
-                        if (is_file($ftmpname . '_thumb.jpg')) {
-                            if (!copy($ftmpname . '_thumb.jpg', $fname . '_thumb.jpg')) {
+                        if (is_file($tempFileName . '_thumb.jpg')) {
+                            if (!copy($tempFileName . '_thumb.jpg', $fname . '_thumb.jpg')) {
                                 die(json_encode(['error' => $this->translate('Failed to copy preview.')],
                                     JSON_UNESCAPED_UNICODE));
                             }
@@ -408,7 +408,7 @@ class File extends Field
                         unset(static::$transactionCommits[$fname]);
                     });
 
-                    $fileRecord['size'] = filesize($ftmpname);
+                    $fileRecord['size'] = filesize($tempFileName);
                     $fileRecord['ext'] = $file['ext'];
                     $fileRecord['file'] = preg_replace('/^.*\/([^\/]+)$/', '$1', $fname);
                 } elseif (!empty($file['file'])) {
