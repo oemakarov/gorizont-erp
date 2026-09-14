@@ -80,7 +80,7 @@ class TmpTables extends Model
 
         $data = $statement->fetchColumn();
 
-        if(empty($data)){
+        if (empty($data)) {
             throw new errorException($this->translate('The storage time of the temporary object has expired.'));
         }
 
