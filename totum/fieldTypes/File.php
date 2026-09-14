@@ -199,8 +199,8 @@ class File extends Field
             if ($files) {
                 $files .= ', ';
             }
-            $fsize = number_format($file['size'] / 1024, 0, ',', ' ');
-            $files .= $file['name'] . " ($fsize Kb)";
+            $fileSize = number_format($file['size'] / 1024, 0, ',', ' ');
+            $files .= $file['name'] . " ($fileSize Kb)";
         }
         return $files;
     }
