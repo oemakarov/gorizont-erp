@@ -22,13 +22,13 @@ class GitUpdate extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-       if (!$input->getOption('force')) {
+        if (!$input->getOption('force')) {
             $error = true;
             if ($totumClass = file_get_contents('https://raw.githubusercontent.com/oemakarov/gorizont-erp/master/totum/common/Totum.php')) {
                 if (preg_match('/public\s*const\s*VERSION = \'(\d+)/', $totumClass, $matches)) {
                     $oldVersion = (string)preg_replace('/^(\d+).*$/', '$1', Totum::VERSION);
                     if ($oldVersion !== $matches[1]) {
-                        die('This update will change the major version from '.$oldVersion.' to ' . $matches[1].' '.
+                        die('This update will change the major version from ' . $oldVersion . ' to ' . $matches[1] . ' ' .
                             'Check server settings and backward compatibility violations at https://github.com/oemakarov/gorizont-erp/blob/master/UPDATES.md ' .
                             'Use --force if you are sure about the update.');
                     } else {
@@ -56,7 +56,7 @@ class GitUpdate extends Command
 
         $Conf = new Conf();
 
-        $uri = 'http://'.$Conf->getSomeHost().'/Commands/reset-opcache';
+        $uri = 'http://' . $Conf->getSomeHost() . '/Commands/reset-opcache';
 
         $context = stream_context_create(
             [
