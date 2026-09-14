@@ -38,7 +38,7 @@ class Password extends Field
                 $valArray['e'] = $this->translate('Field data type error');
             }
         }
-        if ($viewType !== 'edit' || !str_starts_with($valArray['v']??'', '*PASSWORD*')) {
+        if ($viewType !== 'edit' || !str_starts_with($valArray['v'] ?? '', '*PASSWORD*')) {
             $valArray['v'] = '';
         }
     }
@@ -48,7 +48,7 @@ class Password extends Field
         if ($modifyVal === '') {
             $modifyVal = $oldVal;
         } elseif (!$isCheck) {
-            if(str_starts_with($modifyVal, '*PASSWORD*')){
+            if (str_starts_with($modifyVal, '*PASSWORD*')) {
                 $modifyVal = substr($modifyVal, 10);
             }
             $modifyVal = $this->preparePass($modifyVal);
@@ -90,7 +90,7 @@ class Password extends Field
 
     static function checkPassword(Conf $Config, string $hash, string $pass, string|null $passType = null)
     {
-        switch ($passType){
+        switch ($passType) {
             case 'argon2id':
                 return password_verify($pass, $hash);
             case 'cryptokey':
