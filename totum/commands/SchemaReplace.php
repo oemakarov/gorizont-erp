@@ -112,11 +112,11 @@ class SchemaReplace extends Command
         }
         $handle = gzopen($filename, 'r');
 
-        $is_schema_replaced = false;
+        $isSchemaReplaced = false;
         $addedSchemaName = null;
         $addedSchemaTmpName = null;
         while (($buffer = gzgets($handle)) !== false) {
-            if (!$is_schema_replaced && preg_match('/^CREATE SCHEMA ["\']?([a-z_0-9\-]+)["\']?/',
+            if (!$isSchemaReplaced && preg_match('/^CREATE SCHEMA ["\']?([a-z_0-9\-]+)["\']?/',
                     $buffer,
                     $schemaMatch)) {
                 $dropSchema = 'DROP SCHEMA IF EXISTS "' . $schemaName . '" CASCADE;' . "\n";
@@ -129,7 +129,7 @@ class SchemaReplace extends Command
                 }
                 /*Удаляем схему с новым именем, если она существует (уже спросили подтверждение)*/
                 $buffer = $dropSchema . $buffer;
-                $is_schema_replaced = true;
+                $isSchemaReplaced = true;
             }
             fputs($handleTmp, $buffer);
         }
