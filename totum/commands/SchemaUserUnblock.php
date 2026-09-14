@@ -42,9 +42,9 @@ class SchemaUserUnblock extends Command
             throw new errorException('Enter user login');
         }
 
-        if (($block_time = $Conf->getSettings('h_time')) && ($error_count = (int)$Conf->getSettings('error_count'))) {
-            $BlockDate = date_create()->modify('-' . $block_time . 'minutes');
-            $block_date = $BlockDate->format('Y-m-d H:i');
+        if (($blockTime = $Conf->getSettings('h_time')) && ($errorCount = (int)$Conf->getSettings('error_count'))) {
+            $blockDate = date_create()->modify('-' . $blockTime . 'minutes');
+            $blockDateString = $blockDate->format('Y-m-d H:i');
         } else {
             $output->writeln('<error>User authorization blocking is off for this scheme. Users are not blocked because of incorrect passwords.</error>');
             return 0;
@@ -54,7 +54,7 @@ class SchemaUserUnblock extends Command
 
         $login = mb_strtolower($login);
 
-        $record = $model->get(['login' => $login, 'status' => 2, 'datetime->>\'v\'>=\'' . $block_date . '\'',],
+        $record = $model->get(['login' => $login, 'status' => 2, 'datetime->>\'v\'>=\'' . $blockDateString . '\'',],
             '*',
             'id desc');
 
