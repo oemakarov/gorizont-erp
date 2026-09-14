@@ -45,7 +45,7 @@ class User extends Model
 
     public function update($params, $where, $oldRow = null): int
     {
-        $decoded=[];
+        $decoded = [];
         foreach ($params as $key => $param) {
             if (!Model::isServiceField($key) && ($decode = json_decode($param, true))) {
                 $decoded[$key] = $decode['v'];
