@@ -129,8 +129,7 @@ class Number extends Field
         }
     }
 
-    protected
-    function getDefaultValue()
+    protected function getDefaultValue()
     {
         return str_replace(',', '.', $this->data['default'] ?? '');
     }
@@ -146,8 +145,7 @@ class Number extends Field
         return $inNewVal;
     }
 
-    protected
-    function modifyValue($modifyVal, $oldVal, $isCheck, $row)
+    protected function modifyValue($modifyVal, $oldVal, $isCheck, $row)
     {
         $modifyVal = $this->modifyNumberValue($modifyVal, $oldVal);
 
@@ -161,8 +159,7 @@ class Number extends Field
         return $modifyVal;
     }
 
-    protected
-    function checkValByType(&$val, $row, $isCheck = false)
+    protected function checkValByType(&$val, $row, $isCheck = false)
     {
         if (is_null($val) || $val === '') {
             return;
