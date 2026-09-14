@@ -70,12 +70,12 @@ class Date extends Field
 
     public function getValueFromCsv($val)
     {
-        $valObj = Calculate::getDateObject($val, $this->table->getLangObj());
-        if ($valObj) {
+        $dateObject = Calculate::getDateObject($val, $this->table->getLangObj());
+        if ($dateObject) {
             if (!empty($this->data['dateTime'])) {
-                return $valObj->format('Y-m-d H:i');
+                return $dateObject->format('Y-m-d H:i');
             } else {
-                return $valObj->format('Y-m-d');
+                return $dateObject->format('Y-m-d');
             }
         }
 
