@@ -71,6 +71,6 @@ class Checkbox extends Field
 
     protected function checkValByType(&$val, $row, $isCheck = false)
     {
-        $val = ($val === 'true' || $val === true ? true : false);
+        $val = $val === true || $val === 'true';
     }
 }
