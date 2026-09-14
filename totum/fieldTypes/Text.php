@@ -38,7 +38,7 @@ class Text extends Field
 
     public function getValueFromCsv($val)
     {
-        return $val = base64_decode($val);
+        return base64_decode($val);
     }
 
     public function addViewValues($viewType, array &$valArray, $row, $tbl = [])
