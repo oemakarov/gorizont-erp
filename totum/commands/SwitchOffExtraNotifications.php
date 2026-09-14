@@ -40,11 +40,11 @@ class SwitchOffExtraNotifications extends Command
         $sql = $Conf->getSql(true, false);
 
         $max = $input->getArgument('max') ?? '';
-        if (!ctype_digit($max)){
+        if (!ctype_digit($max)) {
             throw new \Exception('Argument max must be integer');
         }
         $max = (int)$max;
-        if ($max < 1){
+        if ($max < 1) {
             throw new \Exception('Argument max must be > 0');
         }
 
