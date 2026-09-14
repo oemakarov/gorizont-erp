@@ -14,6 +14,6 @@ trait WithTotumTrait
 
     public function addTotum(Totum $Totum)
     {
-        $this->Totum=$Totum;
+        $this->Totum = $Totum;
     }
 }
