@@ -35,10 +35,10 @@ class Comments extends Field
         }
     }
 
-    public static function removeViewedForField($table_id, $field_name, ConfParent $Config)
+    public static function removeViewedForField($tableId, $fieldName, ConfParent $Config)
     {
         $prepared = $Config->getSql()->getPrepared('delete from ' . static::table_viewed . ' where table_id=? AND field_name=?');
-        $prepared->execute([$table_id, $field_name]);
+        $prepared->execute([$tableId, $fieldName]);
     }
 
     public function getValueFromCsv($val)
