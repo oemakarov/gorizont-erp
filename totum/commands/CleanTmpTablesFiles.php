@@ -34,13 +34,13 @@ class CleanTmpTablesFiles extends Command
         }
         $dir = $Conf->getFilesDir();
         if (is_dir($dir)) {
-            if ($dh = opendir($dir)) {
-                while (($file = readdir($dh)) !== false) {
-                    if (is_file($fName = $dir . '/' . $file) && str_contains($file, '!tmp!') && fileatime($fName) < time() - 3600) {
-                        unlink($fName);
+            if ($directoryHandle = opendir($dir)) {
+                while (($file = readdir($directoryHandle)) !== false) {
+                    if (is_file($fileName = $dir . '/' . $file) && str_contains($file, '!tmp!') && fileatime($fileName) < time() - 3600) {
+                        unlink($fileName);
                     }
                 }
-                closedir($dh);
+                closedir($directoryHandle);
             }
         }
 
