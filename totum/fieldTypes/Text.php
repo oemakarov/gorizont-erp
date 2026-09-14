@@ -95,14 +95,14 @@ class Text extends Field
                     $val = json_encode($val, JSON_UNESCAPED_UNICODE);
                 }
             } elseif (is_array($val)) {
-                $valTmp = '';
+                $textBuffer = '';
                 foreach ($val as $v) {
-                    if ($valTmp !== '') {
-                        $valTmp .= "\n";
+                    if ($textBuffer !== '') {
+                        $textBuffer .= "\n";
                     }
-                    $valTmp .= is_array($v) ? 'Array' : $v;
+                    $textBuffer .= is_array($v) ? 'Array' : $v;
                 }
-                $val = $valTmp;
+                $val = $textBuffer;
             } else {
                 $val = strval($val);
             }
