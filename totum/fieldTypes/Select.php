@@ -59,20 +59,20 @@ class Select extends Field
         //Наверх выбранные;
         if (!empty($checkedVals) && count($list) > $selectLength) {
             if (empty($this->data['multiple'])) {
-                $mm = $checkedVals[0];
-                if (!is_array($mm) && array_key_exists($mm, $list) && $list[$mm][1] === 0) {
-                    $v = $list[$mm];
-                    unset($list[$mm]);
-                    $list = [$mm => $v] + $list;
+                $checkedValue = $checkedVals[0];
+                if (!is_array($checkedValue) && array_key_exists($checkedValue, $list) && $list[$checkedValue][1] === 0) {
+                    $v = $list[$checkedValue];
+                    unset($list[$checkedValue]);
+                    $list = [$checkedValue => $v] + $list;
                     $checkedNum++;
                 }
             } else {
 
-                foreach ((array)$checkedVals as $mm) {
-                    if (!is_array($mm) && array_key_exists($mm, $list) && $list[$mm][1] === 0) {
-                        $v = $list[$mm];
-                        unset($list[$mm]);
-                        $list = [$mm => $v] + $list;
+                foreach ((array)$checkedVals as $checkedValue) {
+                    if (!is_array($checkedValue) && array_key_exists($checkedValue, $list) && $list[$checkedValue][1] === 0) {
+                        $v = $list[$checkedValue];
+                        unset($list[$checkedValue]);
+                        $list = [$checkedValue => $v] + $list;
                         $checkedNum++;
                     }
                 }
