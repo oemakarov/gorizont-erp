@@ -19,8 +19,8 @@ class CleanSchemasTmpTables extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $conf = new Conf();
-        foreach (array_unique(array_values(Conf::getSchemas())) as $schema) {
-            CleanSchemaTmpTables::doSqlWorks($schema, $conf);
+        foreach (array_unique(array_values(Conf::getSchemas())) as $schemaName) {
+            CleanSchemaTmpTables::doSqlWorks($schemaName, $conf);
         }
         return 0;
     }
