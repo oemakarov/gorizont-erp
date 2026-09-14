@@ -21,13 +21,13 @@ class CleanTmps extends Command
         $Conf = new Conf();
         $dir = $Conf->getTmpDir();
         if (is_dir($dir)) {
-            if ($dh = opendir($dir)) {
-                while (($file = readdir($dh)) !== false) {
-                    if (is_file($fName = $dir . '/' . $file) && fileatime($fName) < time() - 360 * 20) {
-                        unlink($fName);
+            if ($directoryHandle = opendir($dir)) {
+                while (($file = readdir($directoryHandle)) !== false) {
+                    if (is_file($fileName = $dir . '/' . $file) && fileatime($fileName) < time() - 360 * 20) {
+                        unlink($fileName);
                     }
                 }
-                closedir($dh);
+                closedir($directoryHandle);
             }
         }
 
