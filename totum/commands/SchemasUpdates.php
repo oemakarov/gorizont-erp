@@ -31,11 +31,11 @@ class SchemasUpdates extends Command
         $file = $input->getArgument('file');
 
         $excludeIn = $input->getOption('exclude') ?? [];
-        $exclude=[];
-        foreach ($excludeIn as $_){
-            foreach (preg_split('/\s*?[, ]\s*?/', $_) as $s){
-                if($s=trim($s)){
-                    $exclude[]=$s;
+        $exclude = [];
+        foreach ($excludeIn as $excludeEntry) {
+            foreach (preg_split('/\s*?[, ]\s*?/', $excludeEntry) as $entry) {
+                if ($entry = trim($entry)) {
+                    $exclude[] = $entry;
                 }
             }
         }
