@@ -44,7 +44,7 @@ class TablesCalcsConnects extends Model
     public function duplicateCycleSources($tables, $cycleBaseId, $cycleNewId)
     {
 
-        if (count($tables)){
+        if (count($tables)) {
 
             $prepared = $this->Sql->getPrepared('insert into ' . $this->table . ' (table_id, cycle_id, cycles_table_id, source_table_id)  ' .
                 '(select table_id, ?, cycles_table_id, source_table_id from ' .
