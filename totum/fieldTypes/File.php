@@ -250,15 +250,15 @@ class File extends Field
                         $modifyVal->sign)),
                 };
             } elseif (!empty($oldVal) && is_array($oldVal)) {
-                foreach ($oldVal as $fOld) {
+                foreach ($oldVal as $oldFile) {
                     foreach ($modifyVal as $file) {
-                        if (is_array($fOld) && $fOld['file'] === ($file['file'] ?? null)) {
+                        if (is_array($oldFile) && $oldFile['file'] === ($file['file'] ?? null)) {
                             continue 2;
                         }
                     }
-                    if (is_array($fOld) && str_starts_with($fOld['file'] ?? '',
+                    if (is_array($oldFile) && str_starts_with($oldFile['file'] ?? '',
                             $this->_getFprefix($row['id'] ?? null))) {
-                        $deletedFiles[] = $fOld;
+                        $deletedFiles[] = $oldFile;
                     }
                 }
             }
