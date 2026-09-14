@@ -85,8 +85,8 @@ class Date extends Field
     protected function getDefaultValue()
     {
         if (!empty($this->data['default'])) {
-            if ($defDate = Calculate::getDateObject($this->data['default'], $this->table->getLangObj())) {
-                return $defDate->format('Y-m-d' . ($this->data['dateTime'] ? ' H:i' : ''));
+            if ($defaultDate = Calculate::getDateObject($this->data['default'], $this->table->getLangObj())) {
+                return $defaultDate->format('Y-m-d' . ($this->data['dateTime'] ? ' H:i' : ''));
             }
         }
     }
