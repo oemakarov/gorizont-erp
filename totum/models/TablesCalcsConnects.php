@@ -18,14 +18,14 @@ class TablesCalcsConnects extends Model
 
     protected bool $isServiceTable = true;
 
-    public function addConnects($tableId, array $sourceTableIds, $cycle_id = 0, $cycles_table_id = 0)
+    public function addConnects($tableId, array $sourceTableIds, $cycleId = 0, $cyclesTableId = 0)
     {
         foreach ($sourceTableIds as $sourceTableId => $_) {
             $this->insertPrepared(
                 [
                 'table_id' => $tableId
-                , 'cycle_id' => $cycle_id
-                , 'cycles_table_id' => $cycles_table_id
+                , 'cycle_id' => $cycleId
+                , 'cycles_table_id' => $cyclesTableId
                 , 'source_table_id' => $sourceTableId
             ],
                 false,
@@ -35,8 +35,8 @@ class TablesCalcsConnects extends Model
 
         $this->deletePrepared([
             'table_id' => $tableId
-            , 'cycle_id' => $cycle_id
-            , 'cycles_table_id' => $cycles_table_id
+            , 'cycle_id' => $cycleId
+            , 'cycles_table_id' => $cyclesTableId
             , '!source_table_id' => array_keys($sourceTableIds)
         ]);
     }
