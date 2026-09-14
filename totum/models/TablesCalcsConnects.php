@@ -55,11 +55,11 @@ class TablesCalcsConnects extends Model
 
     }
 
-    public function getReceiverTables($table_id, $cycle_id/*=0*/, $cycles_table_id/*=0*/)
+    public function getReceiverTables($tableId, $cycleId/*=0*/, $cyclesTableId/*=0*/)
     {
         return $this->getColumn(
             'table_id',
-            ['source_table_id' => $table_id, 'cycle_id' => $cycle_id, 'cycles_table_id' => $cycles_table_id]
+            ['source_table_id' => $tableId, 'cycle_id' => $cycleId, 'cycles_table_id' => $cyclesTableId]
         );
     }
 
