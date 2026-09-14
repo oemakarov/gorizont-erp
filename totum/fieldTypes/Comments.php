@@ -288,21 +288,21 @@ class Comments extends Field
         return $commentArray;
     }
 
-    private function getViewed($row_id = null)
+    private function getViewed($rowId = null)
     {
         $Model = $this->table->getTotum()->getModel(static::table_viewed, true);
 
-        return $Model->getPrepared($this->getViewedWhere($row_id), 'nums')['nums'] ?? 0;
+        return $Model->getPrepared($this->getViewedWhere($rowId), 'nums')['nums'] ?? 0;
     }
 
-    public function setViewed(int $nums, $row_id)
+    public function setViewed(int $nums, $rowId)
     {
         /*Просмотренное для комментария*/
         if (!empty($this->data['linkTableName']) && !empty($this->data['linkFieldName'])) {
             $LinkedTable = $this->table->getTotum()->getTableRow($this->data['linkTableName']);
             $vars = [$nums,
                 $LinkedTable['id'],
-                ($LinkedTable['type'] === 'calcs' ? ($this->table->getTableRow()['type'] === 'calcs' ? $this->table->getCycle()->getId() : $row_id) : '0'),
+                ($LinkedTable['type'] === 'calcs' ? ($this->table->getTableRow()['type'] === 'calcs' ? $this->table->getCycle()->getId() : $rowId) : '0'),
                 '0',
                 $this->table->getUser()->getId(),
                 $this->data['linkFieldName']
@@ -311,7 +311,7 @@ class Comments extends Field
             $vars = [$nums,
                 $this->table->getTableRow()['id'],
                 ($this->table->getTableRow()['type'] === 'calcs' ? $this->table->getCycle()->getId() : '0'),
-                ($row_id ?? '0'),
+                ($rowId ?? '0'),
                 $this->table->getUser()->getId(),
                 $this->data['name']
             ];
@@ -329,14 +329,14 @@ class Comments extends Field
         );
     }
 
-    private function getViewedWhere($row_id = null)
+    private function getViewedWhere($rowId = null)
     {
-        $where = $this->getWhereForTableField($row_id);
+        $where = $this->getWhereForTableField($rowId);
         $where['user_id'] = $this->table->getUser()->getId();
         return $where;
     }
 
-    private function getWhereForTableField($row_id = null): array
+    private function getWhereForTableField($rowId = null): array
     {
         $where = [];
         /*Для линкованных полей*/
@@ -344,7 +344,7 @@ class Comments extends Field
             $LinkedTable = $this->table->getTotum()->getTableRow($this->data['linkTableName']);
             $where['table_id'] = $LinkedTable['id'];
             if ($LinkedTable['type'] === 'calcs') {
-                $where['cycle_id'] = ($this->table->getTableRow()['type'] === 'calcs' ? $this->table->getCycle()->getId() : $row_id);
+                $where['cycle_id'] = ($this->table->getTableRow()['type'] === 'calcs' ? $this->table->getCycle()->getId() : $rowId);
             }
             $where['field_name'] = $this->data['linkFieldName'];
         } else {
@@ -352,18 +352,18 @@ class Comments extends Field
             if ($this->table->getTableRow()['type'] === 'calcs') {
                 $where['cycle_id'] = $this->table->getCycle()->getId();
             }
-            if ($row_id) {
-                $where['row_id'] = $row_id;
+            if ($rowId) {
+                $where['row_id'] = $rowId;
             }
             $where['field_name'] = $this->data['name'];
         }
         return $where;
     }
 
-    public function getViewedForUsers($users, $row_id)
+    public function getViewedForUsers($users, $rowId)
     {
         $Model = $this->table->getTotum()->getModel(static::table_viewed, true);
-        $where = $this->getWhereForTableField($row_id);
+        $where = $this->getWhereForTableField($rowId);
         $where['user_id'] = $users;
         return $Model->getAllPrepared($where, 'user_id, nums') ?: [];
     }
