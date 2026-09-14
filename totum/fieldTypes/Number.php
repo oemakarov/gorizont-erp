@@ -99,7 +99,7 @@ class Number extends Field
 
     public function getValueFromCsv($val)
     {
-        return $val = str_replace(',', '.', $val);
+        return str_replace(',', '.', $val);
     }
 
     public function addViewValues($viewType, array &$valArray, $row, $tbl = [])
