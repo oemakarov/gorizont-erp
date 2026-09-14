@@ -43,6 +43,6 @@ class ListRow extends Field
 
     public function getValueFromCsv($val)
     {
-        return $val = json_decode(base64_decode($val), true);
+        return json_decode(base64_decode($val), true);
     }
 }
