@@ -85,10 +85,10 @@ class Table extends Model
 
         if (empty($oldRow)) {
             if ($oldRow = static::executePrepared(true, $where, '*', null, '0,1')->fetch()) {
-                foreach ($oldRow as &$_) {
-                    $_ = json_decode($_, true);
+                foreach ($oldRow as &$value) {
+                    $value = json_decode($value, true);
                 }
-                unset($_);
+                unset($value);
             } else {
                 return 0;
             }
