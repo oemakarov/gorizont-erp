@@ -12,5 +12,5 @@ use totum\common\Model;
 
 class TreeV extends Model
 {
-    protected bool $isServiceTable=true;
+    protected bool $isServiceTable = true;
 }
