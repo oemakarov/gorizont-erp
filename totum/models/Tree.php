@@ -55,7 +55,7 @@ class Tree extends Model
 
     public function getBranchesByTables($branchId = null, array $tables = null, array $roles = null)
     {
-        if (empty($roles)){
+        if (empty($roles)) {
             return [];
         }
         if (empty($tables)) {
